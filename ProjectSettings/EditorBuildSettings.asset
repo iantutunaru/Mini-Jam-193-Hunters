@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Credits.unity
     guid: 3f4629d5d2d334144bfcc4ea8e91c90c
   - enabled: 1
     path: Assets/Scenes/Level2FoxBoss.unity
     guid: 6f069161d8cfa6348b37d602404dda42
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main-Menu.unity
     guid: 7b9bcd45471a3484dace49b78e12fa62
   m_configObjects: {}

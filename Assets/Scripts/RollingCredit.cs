@@ -1,5 +1,3 @@
-using TreeEditor;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,8 +13,5 @@ public class RollingCredit : MonoBehaviour
         {
             SceneManager.LoadScene("Main-Menu");
         }
-
     }
-
-
 }
