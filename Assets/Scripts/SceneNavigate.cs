@@ -18,6 +18,11 @@ public class SceneNavigate : MonoBehaviour
         pauseToggle.ResumeOnQuit();
         SceneManager.LoadScene("Main-Menu");
     }
+
+    public void QuitCredits()
+    {
+        SceneManager.LoadScene("Main-Menu");
+    }
     
     // Level 2 Scene Load Func
     public void PlaySceneLoad()
