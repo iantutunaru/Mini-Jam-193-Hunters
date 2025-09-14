@@ -14,6 +14,7 @@ public class AITarget : MonoBehaviour
     private Animator mAnimator;
     
     private float _mDistance;
+    private bool _isBoss;
     
     private static readonly int Attack = Animator.StringToHash(("Attack"));
     
@@ -24,12 +25,22 @@ public class AITarget : MonoBehaviour
         if (_mDistance < attackDistance)
         {
             mAgent.isStopped = true;
-            //mAnimator.SetBool(Attack, true);
+            
+            if (_isBoss)
+            {
+                mAnimator.SetBool(Attack, true);
+            }
+            
         }
         else
         {
             mAgent.isStopped = false;
-            //mAnimator.SetBool(Attack, false);
+            
+            if (_isBoss)
+            {
+                mAnimator.SetBool(Attack, false);
+            }
+            
             mAgent.destination = target.position;
         }
     }
@@ -41,10 +52,11 @@ public class AITarget : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        /*
-        if (mAnimator.GetBool(Attack) == false)
+        if (_isBoss)
         {
-            mAgent.speed = (mAnimator.deltaPosition / Time.fixedDeltaTime).magnitude;
-        }*/
+                var speed = (mAnimator.deltaPosition / Time.fixedDeltaTime).magnitude;
+                
+                mAnimator.SetFloat("Speed", speed);
+        }
     }
 }

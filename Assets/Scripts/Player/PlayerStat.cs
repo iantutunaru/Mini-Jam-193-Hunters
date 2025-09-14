@@ -24,7 +24,8 @@ public class PlayerStats : MonoBehaviour
     public GameplayManager gameplayManager;
     
     [SerializeField] private Animator animator;
-    [SerializeField] float invulnerabilityTimer = 1f;
+    [SerializeField] private float invulnerabilityTimer = 1f;
+    [SerializeField] private Button doubleOrNothingButton;
     
     private float _timeSinceLastDamage = 0f;
     private bool _allowDamage = true;
@@ -99,7 +100,14 @@ public class PlayerStats : MonoBehaviour
 
     public void Heal(float amount)
     {
-        currentHealth += amount;
+        if (amount + currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth += amount;
+        }
     }
 
     // Maybe use stamina for jump or sprint. reduce the amount from stamina
@@ -118,5 +126,22 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         animator.SetTrigger(Death);
+    }
+
+    public void DoubleOrNothing()
+    {
+        var random = Random.Range(0, 2);
+
+        if (random == 0)
+        {
+            maxHealth = 200f;
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth = 1;
+        }
+        
+        doubleOrNothingButton.interactable = false;
     }
 }
