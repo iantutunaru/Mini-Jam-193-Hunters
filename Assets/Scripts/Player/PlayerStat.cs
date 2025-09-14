@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     public float attackPower = 10f;
     public float defensePower = 5f;
 
+    public GameplayManager gameplayManager;
 
     private void Start()
     {
@@ -27,6 +29,14 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        if (currentHealth <= 0)
+        {
+            if (gameplayManager != null)
+            {
+                gameplayManager.GameOver();
+            }
+        }
+
         if (healthBar != null)
         {
             healthBar.fillAmount = currentHealth / maxHealth;
@@ -51,10 +61,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        
     }
 
     public void Heal(float amount)
@@ -73,6 +80,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentStamina += amount;
     }
+
 
     // Just Debug Log for now.
     private void Die()
