@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseToggle : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PauseToggle : MonoBehaviour
     public bool pauseTime = true;         
 
     bool isPaused;
+    
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Image healthBarFill;
 
     void Start()
     {
@@ -26,9 +30,12 @@ public class PauseToggle : MonoBehaviour
     void SetPaused(bool pause)
     {
         isPaused = pause;
+        healthBar.enabled = !pause;
+        healthBarFill.enabled = !pause;
 
         if (pauseMenuRoot) pauseMenuRoot.SetActive(pause);
         if (cameraLookScript) cameraLookScript.enabled = !pause;
+        
         Cursor.lockState = pause ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = pause;
 
