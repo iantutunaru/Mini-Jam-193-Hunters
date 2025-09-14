@@ -35,5 +35,12 @@ public class PauseToggle : MonoBehaviour
         if (pauseTime) Time.timeScale = pause ? 0f : 1f;
     }
 
+    public void ResumeOnQuit()
+    {
+        SetPaused(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void Resume() => SetPaused(false);
 }
