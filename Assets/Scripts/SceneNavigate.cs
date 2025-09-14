@@ -23,4 +23,9 @@ public class SceneNavigate : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
+
+    public void MainMenuSceneLoad()
+    {
+        SceneManager.LoadScene("Main-Menu");
+    }
 }
