@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerStats : MonoBehaviour
     public float moveSpeed = 5f;
     public float staminaDrainRate = 5f;
     public float staminaRegenRate = 2f;
+
+    public Image healthBar;
 
     // Other possible stats, Can be commented out 
     public float attackPower = 10f;
@@ -24,6 +27,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = currentHealth / maxHealth;
+        }
+
         // Stamina will be drained when the player is moving
         if (currentStamina > 0 && (Input.GetKey(KeyCode.W) | Input.GetKey(KeyCode.S) | Input.GetKey(KeyCode.A) | Input.GetKey(KeyCode.D)))
         {
