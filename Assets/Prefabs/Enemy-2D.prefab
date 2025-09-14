@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4414268195172846546}
   - component: {fileID: 1635776336056258486}
   - component: {fileID: 1907607066306833795}
+  - component: {fileID: 73076770965628842}
   - component: {fileID: 1949894351138305148}
   - component: {fileID: 467711748251226722}
   - component: {fileID: 284025043946167059}
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  attackDistance: 2
+  attackDistance: 1
   mAgent: {fileID: 4414268195172846546}
   mAnimator: {fileID: 0}
 --- !u!114 &1907607066306833795
@@ -114,6 +115,22 @@ MonoBehaviour:
   damage: 0
   speed: 0
   isDead: 0
+  animator: {fileID: 1949894351138305148}
+  damageFlash: {fileID: 73076770965628842}
+--- !u!114 &73076770965628842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649732096839048784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697fea558e7d6694eb815027c2a0b649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashDuration: 0.25
 --- !u!95 &1949894351138305148
 Animator:
   serializedVersion: 5
@@ -155,7 +172,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: fade683fe49e8664796e74a332d61c51, type: 3}
+  - {fileID: -876546973899608171, guid: 69bdda8d16bbbbb4993a525f82612c41, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

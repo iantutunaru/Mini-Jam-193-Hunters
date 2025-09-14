@@ -34,6 +34,11 @@ public class AITarget : MonoBehaviour
         }
     }
 
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
     private void OnAnimatorMove()
     {
         /*

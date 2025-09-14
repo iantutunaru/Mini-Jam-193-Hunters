@@ -60,5 +60,4 @@ public class GameplayManager : MonoBehaviour
         // Reset isGameOver to allow restarting the game
         isGameOver = false;
     }
-
 }

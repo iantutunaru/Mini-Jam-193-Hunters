@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    
+
     // Player Stats, can add additional stats
     public float maxHealth = 100f;
     public float currentHealth;
@@ -18,8 +20,16 @@ public class PlayerStats : MonoBehaviour
     // Other possible stats, Can be commented out 
     public float attackPower = 10f;
     public float defensePower = 5f;
-
+    
     public GameplayManager gameplayManager;
+    
+    [SerializeField] private Animator animator;
+    [SerializeField] float invulnerabilityTimer = 1f;
+    
+    private float _timeSinceLastDamage = 0f;
+    private bool _allowDamage = true;
+    
+    private static readonly int Death = Animator.StringToHash("Death");
 
     private void Start()
     {
@@ -27,10 +37,17 @@ public class PlayerStats : MonoBehaviour
         currentStamina = maxStamina;
     }
 
+    private void FixedUpdate()
+    {
+        CheckIfDamageIsAllowed();
+    }
+
     private void Update()
     {
         if (currentHealth <= 0)
         {
+            Die();
+            
             if (gameplayManager != null)
             {
                 gameplayManager.GameOver();
@@ -60,8 +77,24 @@ public class PlayerStats : MonoBehaviour
     // TakeDamage Function
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        
+        if (_allowDamage)
+        {
+            currentHealth -= damage;
+            _allowDamage = false;
+        }
+    }
+
+    private void CheckIfDamageIsAllowed()
+    {
+        if (_timeSinceLastDamage < invulnerabilityTimer)
+        {
+            _timeSinceLastDamage += Time.fixedDeltaTime;
+        }
+        else
+        {
+            _allowDamage = true;
+            _timeSinceLastDamage = 0f;
+        }
     }
 
     public void Heal(float amount)
@@ -75,17 +108,15 @@ public class PlayerStats : MonoBehaviour
         currentStamina -= amount;
     }
 
-    // Maybe drinking water or eating something will regenerate staminas.
+    // Maybe drinking water or eating something will regenerate stamina
     public void RegenerateStamina(float amount)
     {
         currentStamina += amount;
     }
 
-
     // Just Debug Log for now.
     private void Die()
     {
-        // trigger death animation, disable movement, etc.
-        Debug.Log("Player has died!");
+        animator.SetTrigger(Death);
     }
 }
