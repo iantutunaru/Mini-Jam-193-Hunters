@@ -19,6 +19,11 @@ public class SceneNavigate : MonoBehaviour
         SceneManager.LoadScene("Main-Menu");
     }
 
+    public void StorylineSceneLoad()
+    {
+        SceneManager.LoadScene("Storyline");
+    }
+
     public void QuitCredits()
     {
         SceneManager.LoadScene("Main-Menu");
